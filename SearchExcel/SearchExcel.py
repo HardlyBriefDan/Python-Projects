@@ -45,7 +45,7 @@ def Main():
         
         rowData = {}
         for row in range(1, sheet.max_row + 1):
-                dataEntered = sheet['A' + str(row)].value
+                dataEntered = sheet['B' + str(row)].value
                 rowData['L' + str(row)] = dataEntered
 
                 
@@ -59,7 +59,7 @@ def Search(data, keyword):
                 #print(line)
                 if((line.find(keyword and 'game') == -1)   ):
                         print("NO")
-                        AmiiboData[len(searchedData)+1] = 'NOT RELAVENT TO SEARCH!'
+                        searchedData[len(searchedData)+1] = 'NOT RELAVENT TO SEARCH!'
                 else:
                     searchedData[len(searchedData)+1] = line
                     #print("Yes " + line)
