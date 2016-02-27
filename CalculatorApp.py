@@ -1,15 +1,20 @@
+#adds two numbers
 def add(num1, num2):
     return num1 + num2
 
+#subtracts two numbers
 def subtract(num1, num2):
     return num1 - num2
 
+#multiplies two numbers
 def multiply(num1, num2):
     return num1 * num2
 
+#dividea two numbers
 def divide(num1, num2):
     return num1/num2
 
+#checks the users input to make sure it is an int
 def testInput(num1):
     try:
         int(num1)
@@ -18,7 +23,7 @@ def testInput(num1):
     else:
         return True
 
-
+#checks input and uses the correct method
 mathOptions = {'+' : add,
                    '-' : subtract,
                    '*' : multiply,
@@ -43,13 +48,6 @@ def Calculator():
     userNum2 = int(userNum2)
     
     print("Thank you.....Calculating....")
-
-    mathOptions = {'+' : add,
-                       '-' : subtract,
-                       '*' : multiply,
-                       '/' : divide
-    }
-
 
     calValue = mathOptions[userCmd](userNum1, userNum2)
     print("The calculated value is: " + str(calValue))
