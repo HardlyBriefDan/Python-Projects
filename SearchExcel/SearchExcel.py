@@ -12,16 +12,6 @@ def CheckIfBookExists(bookName):
         else:
                 print("File does not exist")
                 return False
-
-def CheckIfSheetExists(workBook, sheetName):
-        
-        try:
-                sheet = workBook.get_sheet_by_name(sheetName)
-        except ValueError:
-                return False
-        else:
-                return True
-
         
 def Main():
         print("Dan's Excel Workbook Data Sorter V1")
@@ -37,32 +27,32 @@ def Main():
               #  workBookName = input("Please enter the sheet name: ")
 
 
-
-                
         #sheet = wb.get_sheet_by_name('TestData')
-        sheet = wb.active
+        sheet = wb.active #gets the active sheet
 
-        
+        coloumn = input("Please input the coloumn letter you wish to parse.")
+
         rowData = {}
         for row in range(1, sheet.max_row + 1):
-                dataEntered = sheet['B' + str(row)].value
+                dataEntered = sheet[coloumn + str(row)].value
                 rowData['L' + str(row)] = dataEntered
 
-                
-        Search(rowData, "info")
+        keyword = input("PLease enter the keyword you wish to sort by: ")          
+        Search(rowData, keyword)
 
 
 def Search(data, keyword):
+        print("Seaching...")
         searchedData = {}
         for row in range(1, len(data) + 1):
                 line = data['L' + str(row)]
                 #print(line)
-                if((line.find(keyword and 'game') == -1)   ):
-                        print("NO")
+                if(line.find(keyword == -1)):    #returns a -1 if not found
+                        print("No match.")
                         searchedData[len(searchedData)+1] = 'NOT RELAVENT TO SEARCH!'
                 else:
                     searchedData[len(searchedData)+1] = line
-                    #print("Yes " + line)
+                    print("Found Match.")
      
         WriteToNewBook(searchedData, keyword)
 
@@ -76,7 +66,7 @@ def WriteToNewBook(data, keyword):
                 #print(type(row))
                 sheet['A' + str(row)] = data[row]
 
-        title = keyword + 'data.xlsx'
+        title = keyword + 'ParsedData.xlsx'
         newWb.save(title)
 
         
