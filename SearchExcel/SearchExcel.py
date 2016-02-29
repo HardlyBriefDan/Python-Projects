@@ -5,14 +5,16 @@ from openpyxl import load_workbook
 import openpyxl
 import os.path
 
+#checks and makes sure the file inputted exists in the directory
 def CheckIfBookExists(bookName):
-        path = './' + bookName + '.xlsx'
-        if(os.path.isfile(path)):
+        wbPath = './' + bookName + '.xlsx'
+        if(os.path.isfile(wbPath)):
                 return True
         else:
                 print("File does not exist")
                 return False
-        
+
+#TODO add sheet name input and column input        
 def Main():
         print("Dan's Excel Workbook Data Sorter V1")
         workBookName = input("Enter workbook name: ")
@@ -56,7 +58,7 @@ def Search(data, keyword):
      
         WriteToNewBook(searchedData, keyword)
 
-
+#TODO write data to new workbook and labels the book based on the keyword
 def WriteToNewBook(data, keyword):
         newWb = openpyxl.Workbook()
         sheet = newWb.get_sheet_by_name('Sheet')
